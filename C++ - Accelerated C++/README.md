@@ -1,0 +1,2 @@
+# Accelerated C++ - Practical Programming by Example
+I'm abandoning this book about halfway through the Chapter 04 problems since I've realized this book was published in 2001 - therefore it's quite out of date... I'll look for something new but I'll leave this up just in case someone else stumbles on this book and could use some help with problems from the first few chapters.

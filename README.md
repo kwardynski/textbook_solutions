@@ -1,6 +1,6 @@
 ## C++
-- [Accelerated C++](C++ - Accelerated C++) - Abandoned as this book is quite out of date at this point
+- [Accelerated C++](/C%2B%2B%20-%20Accelerated%20C%2B%2B/) - Abandoned as this book is quite out of date at this point
 
 ## Elixir
-- [Programming Elixir 1.3](Elixir - Programming Elixir 1.3) - Completed all except Macros section
-- [Elixir in Action Second Edition](Elixir - Elixir in Action Second Edition) - Underway
+- [Elixir in Action Second Edition](/Elixir%20-%20Elixir%20in%20Action%20Second%20Edition/) - Underway
+- [Programming Elixir 1.3](/Elixir%20-%20Programming%20Elixir%201.3/) - Completed all except Macros section

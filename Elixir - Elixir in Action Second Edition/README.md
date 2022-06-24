@@ -22,4 +22,4 @@ iex(2) > ~S(Not interpolated: #{3 + 0.14}\n)
 ```
 
 ## Chapter 3 - Control flow
-No notes taken for this chapter, however solutions to practice problems can be found [here](/ch02_practice/)
+No notes taken for this chapter, however solutions to practice problems can be found [here](./ch02_practice/)

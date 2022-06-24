@@ -1,0 +1,6 @@
+Hello,
+My name is Kacper Wardynski
+This is the longest line in the file containing eleven words
+This file is used for testing
+The functions found
+In the stream_practice.ex module

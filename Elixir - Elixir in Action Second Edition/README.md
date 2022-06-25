@@ -31,3 +31,9 @@ The basic principles of data abstraction in Elixir:
 - Modifier functions return a modified version of the abstraction.
 - Query functions return some other type of data.
 
+**Structs vs Maps**  
+Structs are really just implementations of maps, so they have the same characteristics with respect to performance and memory usage. Struct instances, however, receive a slightly special treatment - i.e. they _are not_ enumerable so you can't call `Enum` functions on them. Struct patterns also _cannot_ match a plain map, however a plain map _can_ match a struct!  
+
+**Data Transparency**
+In Elixir, data is _always_ transparent. Unlike traditional OO languages, clients can read all of the data in your structs (or any other data type for that matter). In this sense, encapsulation works differently in Elixir than you may be used to.
+

@@ -22,4 +22,12 @@ iex(2) > ~S(Not interpolated: #{3 + 0.14}\n)
 ```
 
 ## Chapter 3 - Control flow
-No notes taken for this chapter, however solutions to practice problems can be found [here](./ch02_practice/)
+No notes taken for this chapter, however solutions to practice problems can be found [here](./ch03_practice/)
+
+## Chapter 4 - Data abstractions
+The basic principles of data abstraction in Elixir:
+- A module is in charge of abstracting some data.
+- The module's functions usually expect an instance of the data abstraction as the first argument.
+- Modifier functions return a modified version of the abstraction.
+- Query functions return some other type of data.
+

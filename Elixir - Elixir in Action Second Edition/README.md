@@ -37,3 +37,9 @@ Structs are really just implementations of maps, so they have the same character
 **Data Transparency**
 In Elixir, data is _always_ transparent. Unlike traditional OO languages, clients can read all of the data in your structs (or any other data type for that matter). In this sense, encapsulation works differently in Elixir than you may be used to.
 
+### Summary:
+- A module is used to create a data abstraction. A module's functions create, manipulate, and query data. Clients can inspect the entire structure but shouldn't rely on it.
+- Maps can be used to group different fields together in a single structure.
+- Structs are special kind of maps that allow you to define data abstractions related to a module.
+- Polymorphism can be implemented with protocols. A protocol defines an interface that is used by the generic logic. You can then provide specific protocol implementations for a data type.
+

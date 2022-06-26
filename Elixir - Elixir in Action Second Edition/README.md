@@ -129,4 +129,29 @@ Some preferred conventions for file naming and organization in Elixir (Mix) proj
 
 
 
+# Chapter 8 - Fault-tolerance basics
+- A runtime error has a type, which can be `:error`, `:exit`, or `:throw`
+- A runtime error also have a value, which can be an arbitrary term
+- IF a runtime error isn't handled, the corresponding process will terminate
 
+In Elixir, the _Supervisor_ module is a generic process that manages the lifecycle of other processes. By invoking `Supervisor.start_link/2` you can start the supervision process, which then works as follows:
+1. The supervisor process traps exits, and then starts the child process.
+2. If at any point in time a child terminates, the supervisor process receives a corresponding exit message and performs corrective actions, such as restarting the crashed process.
+3. If a supervisor process terminates, its children are also taken down.
+
+In order to manage a child process, a supervisor needs some information:
+1. How should the child be started?
+2. What should be done if the child terminates?
+3. What term should be used to uniquely distinguish each child?  
+
+The above pieces of information are collectively called the _child specifications_.
+
+### Summary
+- There are three types of runtime errors: throws, errors, and exits.
+- When a runtime error occurs, execution moves up the stack to the corresponding `try` block. If an error isn't handled, a process will crash.
+- Process termination can be detected in another process. To do this, you ccan use links or monitors.
+- Links are bidirectional - a crash of either process is propagated to the other process.
+- By default, when a process terminates abnormally, all processes linked to it terminate as well. By trapping exits, you can react to the crash of a linked process and do something about it.
+- A supervisor is a process that manages the lifecycle of other processes. It can start, supervise, and restart crashed processes.
+- The _Supervisor_ module is used to start supervisors and work with them.
+- A supervisor is defined by the list of child specifications and the supervision strategy. You can provide these as the arguments to `Supervisor.start_link/2`, or you can implement a callback module.

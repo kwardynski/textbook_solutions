@@ -1,9 +1,11 @@
-## Chapter 1 - First steps
+# Chapter 1 - First steps
 - I/O operations are internally delegated to separate threads in Erlang, therefore any process that waits for an I/O operation to finish won't block the execution of other processes.
 - Why use Elixir over Erlang? Elixir presents cleaner, more compact code which does a better job of revealing the process's intentions. Programs written in Elixir will be compiled and executed in BEAM.
 - Since Elixir/Erlang run on BEAM, programs will never achieve the speed of machine-compiled code (C/C++). The goal isn't maximizing performance, instead the focus is to keep performance as predictable, reliable, and fault-tolerant as possible.
 
-## Chapter 2 - Building Blocks 
+
+
+# Chapter 2 - Building Blocks 
 - Everyting in Elixir is an expression that has a return value. This extends to constructs such as `if` and `case`.
 - Elixir is dynamically typed -> the variable type is determined by the data which it contains at the moment.
 - In Elixir, assigning a value to a variable is called _binding_.
@@ -21,10 +23,14 @@ iex(2) > ~S(Not interpolated: #{3 + 0.14}\n)
 "Not interpolated: #{3 + 0.14}\\n"
 ```
 
-## Chapter 3 - Control flow
+
+
+# Chapter 3 - Control flow
 No notes taken for this chapter, however solutions to practice problems can be found [here](./ch03_practice/)
 
-## Chapter 4 - Data abstractions
+
+
+# Chapter 4 - Data abstractions
 The basic principles of data abstraction in Elixir:
 - A module is in charge of abstracting some data.
 - The module's functions usually expect an instance of the data abstraction as the first argument.
@@ -43,3 +49,27 @@ In Elixir, data is _always_ transparent. Unlike traditional OO languages, client
 - Structs are special kind of maps that allow you to define data abstractions related to a module.
 - Polymorphism can be implemented with protocols. A protocol defines an interface that is used by the generic logic. You can then provide specific protocol implementations for a data type.
 
+
+
+# Chapter 5 - Concurrency primitives
+**Covered in this chapter:**
+- Understanding BEAM concurrency principles
+- Working with processes
+- Working with stateful server processes
+- Runtime considerations
+
+Concurrency in BEAM (and Erlang) tackles to following challenges:
+- _Fault-tolerance_ - Minimizee, isolate, and recover from the effects of runtime errors.
+- _Scalability_ - Handle a load increase by adding more hardware resources without changing or redeploying code.
+- _Distribution_ - Run your system on multiple machines so that others can take over if one machine crashes.
+
+**NOTE**:
+```
+Concurrency doesn't necessarily imply parallelism. Two concurrent things have independent execution contets, but this doesn't mean they will run in parallel. If you run two CPU-bound concurrent tasks and you only have one CPU core, parallel execution can't happen. You can achieve parallelism by adding more CPU cores and relying on an efficient concurrent framework. But you should be aware that concurrency itself doesn't necessarily speed things up!
+```
+
+### Summary:
+- A BEAM process is a lightweight concurrent unit of execution. Processes are completely isolated and share no memory.
+- Processes can communicate with asynchronous messages. Synchronous sends and responses are manually built on top of this basic mechanism.
+- A server process is a process that runs for a long time (possibly forever) and handles various messages. Server processes are powered by endless recursion.
+- Server processes can maintain their own private state using teh arguments of the endless recursion.

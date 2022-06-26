@@ -78,3 +78,30 @@ concurrency itself doesn't necessarily speed things up!
 - Processes can communicate with asynchronous messages. Synchronous sends and responses are manually built on top of this basic mechanism.
 - A server process is a process that runs for a long time (possibly forever) and handles various messages. Server processes are powered by endless recursion.
 - Server processes can maintain their own private state using teh arguments of the endless recursion.
+
+
+
+# Chapter 6 - Generic server processes
+Elixir provides comprehensive framework for implementing server processes: OTP (Open Telecom Platform). It provides patterns and abstractions for tasks such as creating components, building releases, developing server processes, handling and recovering from runtime errors, logging, event handling, and upgrading code. All code that implements a server process needs to do the following:
+- Spawn a separate process
+- Run an infinite loop in the process
+- Maintain the process state
+- React to messages
+- Send a response back to the caller
+
+In the [server_process](/ch06_practice/server_process.ex) file, clients can use `start/0`, `put/3`, and `get/2` to maniupulate the key/value store. These functions are informally called _interface functions_. Clients use the interface functions of `KeyValueStore` to start and interact with the process. In contrast, `init/0` and `handle_call/2` are callback functions used internally by the generic code. Note that interface functions run in the client processes, whereas callback functions are always invoked in the server process.
+
+**Supporting Asynchronous Requests**
+In OTP, the naming convention for synchronous requests is _call_, while the naming convention for asynchronous requests is _cast_. 
+
+## Using GenServer
+Elixir ships with support for building generic server processes, called _GenServer_. Some of the compelling features of _GenServer_ are:
+- Support for calls and casts
+- Customizable timeouts for call requests
+- Propagation of server-process crashes to client processes waiting for a response
+- Support for distributed systems
+
+### Summary
+- A generic server process is an abstraction that implements tasks common to any kind of server process, such as recursion-powered looping and message passing.
+- A generic server process can be implemented as a behaviour. A behaviour drives the process, whereas specific implementations can plug into the behavior via callback modules.
+- The behaviour invokes callback functions when the specific implementation needs to make a decision.

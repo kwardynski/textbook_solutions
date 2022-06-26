@@ -105,3 +105,28 @@ Elixir ships with support for building generic server processes, called _GenServ
 - A generic server process is an abstraction that implements tasks common to any kind of server process, such as recursion-powered looping and message passing.
 - A generic server process can be implemented as a behaviour. A behaviour drives the process, whereas specific implementations can plug into the behavior via callback modules.
 - The behaviour invokes callback functions when the specific implementation needs to make a decision.
+- _GenServer_ is a behaviour that implements a generic server process.
+- A callback module for _GenServer_ must implement various functions. The most frequently used ones are `init/1`, `handle_cast/2`, `handle_call/3`, and `handle_info/2`.
+- You can interact with a _GenServer_ process with the _GenServer_ module.
+- Two types of requests can be issued to a server process: calls and casts.
+- A cast is a fire-and-forget type of request - a caller sends a message and immediately moves on to do something else.
+- A call is a synchronous send-and-respond request - a caller sends a message and waits until the response arrives, the timeout occurs, or the server crashes.
+
+
+
+# Chapter 7 - Building a concurrent system
+Some preferred conventions for file naming and organization in Elixir (Mix) projects:
+- You should place your modules under a common top-level alias. For example, modules might be called `Todo.List`, `Todo.Server`, and so on. This reduces the chance of module names conflicting when you combine multiple projects into a single system.
+- In general, one file should contain one module. Occasionally, if a helper module is small and used only internally, it can be placed in the same file as the module using it. If you want to implement protocols for the module, you can do this in the same file as well.
+- A filename should be an underscore case (aka _snake_ case) version of the main module name it implements. For example, a `TodoServer` module would reside in a todo_server.ex file in the lib folder.
+- The folder structure should correspond to multipart module names. A module called `Todo.Server` should reside in the file /lib/todo/server.ex
+
+### Summary
+- When a system needs to perform various tasks, it's often beneficial to run different tasks in separate processes. Doing so promotes the scalability and fault-tolerance of the system.
+- A process is internally sequential and handles requests one by one. A single process can thus keep its state consistent, but it can also cause a performance bottleneck if it serves many clients.
+- Carefully consider calls versus casts. Calls are synchronous and therefore block the caller. If the response isn't needed, casts may improve performance at the expence of reduced guarantees, because a client process doesn't know the outcome.
+- You can use `mix` projects to manage more involved systems that consist of multiple modules.
+
+
+
+

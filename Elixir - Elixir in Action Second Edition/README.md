@@ -65,7 +65,12 @@ Concurrency in BEAM (and Erlang) tackles to following challenges:
 
 **NOTE**:
 ```
-Concurrency doesn't necessarily imply parallelism. Two concurrent things have independent execution contets, but this doesn't mean they will run in parallel. If you run two CPU-bound concurrent tasks and you only have one CPU core, parallel execution can't happen. You can achieve parallelism by adding more CPU cores and relying on an efficient concurrent framework. But you should be aware that concurrency itself doesn't necessarily speed things up!
+Concurrency doesn't necessarily imply parallelism. Two concurrent things have
+independent execution contets, but this doesn't mean they will run in parallel. 
+If you run two CPU-bound concurrent tasks and you only have one CPU core, parallel 
+execution can't happen. You can achieve parallelism by adding more CPU cores
+and relying on an efficient concurrent framework. But you should be aware that
+concurrency itself doesn't necessarily speed things up!
 ```
 
 ### Summary:

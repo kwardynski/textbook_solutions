@@ -155,3 +155,13 @@ The above pieces of information are collectively called the _child specification
 - A supervisor is a process that manages the lifecycle of other processes. It can start, supervise, and restart crashed processes.
 - The _Supervisor_ module is used to start supervisors and work with them.
 - A supervisor is defined by the list of child specifications and the supervision strategy. You can provide these as the arguments to `Supervisor.start_link/2`, or you can implement a callback module.
+
+
+
+# Chapter 9 - Isolating error effects
+- Supervisors allow you to localize the impact of an error, keeping unrelated parts of the system undisturbed.
+- The registry helps you find processes without needing to track their pids. This is very helpful if a process is restarted.
+- Each process should reside somewhere in a supervision tree. This makes it possible to terminate the entire system (or an arbitrary sub-part of it) by terminating the supervisor.
+- _DynamicSupervisor_ is used for on-demand starting.
+- When a process crashes, its state is lost. You can deal with this by storing state outside the process, but more often than not, it's best to start with a clean state.
+- In general, you should handle unexpected errors through a proper supervision hierarchy. Explicit handling through a `try` construct should only be used when you have a meaningful way to deal with an error.

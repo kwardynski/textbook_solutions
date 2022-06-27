@@ -16,3 +16,5 @@ Debug/
 erl_crash.dump
 *.ez
 /tmp/
+
+**/code_samples/**

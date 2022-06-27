@@ -165,3 +165,27 @@ The above pieces of information are collectively called the _child specification
 - _DynamicSupervisor_ is used for on-demand starting.
 - When a process crashes, its state is lost. You can deal with this by storing state outside the process, but more often than not, it's best to start with a clean state.
 - In general, you should handle unexpected errors through a proper supervision hierarchy. Explicit handling through a `try` construct should only be used when you have a meaningful way to deal with an error.
+
+
+
+# Chapter 10 - Beyond GenServer
+
+## Tasks
+The _Task_ module can be used to concurrently run a job - a process that takes some input, performs some computation, then stops. Whereas a _GenServer_ process acts as a long-running server, a _Task_-powered process starts its work immediately, doesn't serve requests, and stops when the work is done.
+
+## Agents
+The _Agent_ module provides an abstraction that's similar to _GenServer_. Agents require a bit less ceremony and can therefore eliminate some boilerplate associated with _GenServers_. On the flip side, _Agent_ doesn't support all the scenarios that _GenServer_ does.
+- If you only need `init/1`, `handle_cast/2`, and `handle_call/`, you can use an _Agent_.
+- If you need `handle_info/2` or `terminate/1`, you need to use a _GenServer_.
+
+To start an agent, use `Agent.start_link/1`, where the argument is a lambda. The agents uses the return value of the lambda as it's starting state.
+ 
+**Agent Limitations** -> The _Agent_ module cannot be used to handle plain messages or run logic upon termination. It's a very lightweight (and exposed) version implemented on top of the _GenServer_ module.
+
+## ETS (Erlant Term Storage) Tables 
+This is a mechanism which allows you to share some state between multiple process in a highly efficient way. Anything you can do with an ETS table can be done with an _Agent_ or _GenServer_, however the ETS version will usually have significantly better performance.
+
+### Summary
+- Tasks can be used to run OTP-compliant concurrent job processes.
+- Agents can be used to simplify the implementation of processes that manage some state but don't need to handle plain messages.
+- ETS tables can be used to improve performance in some cases, such as shared key/value memory structures.

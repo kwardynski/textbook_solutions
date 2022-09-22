@@ -6,4 +6,4 @@
 - [Programming Elixir 1.3](/Elixir%20-%20Programming%20Elixir%201.3/) - Completed all except Macros section
 
 ## Phoenix
-- [Programming Phoenix 1.4](/Phoenix%20-%20Programming%20Phoenix%201.4/)
+- [Programming Phoenix 1.4](/Phoenix%20-%20Programming%20Phoenix%201.4/) - Underway

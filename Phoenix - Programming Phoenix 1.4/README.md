@@ -12,3 +12,6 @@
 - In Phoenix, a _view_ is a module containing rendering functions that convert data into a format the end user will consume, like HTML or JSON.
 - In Phoenix, a _template_ is a function on that module, compiled from a file containing a raw markup language and embedded Elixir code to process substitutions and loops.
 - The sepapration of the view and template comcepts makes it easy to render data any way you want.
+- Views render templates. 
+- Templates generate HTML for our users.
+- Laoyts are HTML templates that embed an action's HTML.

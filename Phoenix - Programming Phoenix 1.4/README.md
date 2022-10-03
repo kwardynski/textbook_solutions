@@ -15,3 +15,7 @@
 - Views render templates. 
 - Templates generate HTML for our users.
 - Laoyts are HTML templates that embed an action's HTML.
+
+[Chapter 4 - Ecto and Changesets](Chapter%2004/)
+- Ecto is the Elixir framework for persisting data.
+- Ecto has a feature called _changesets_, which hold all the changes you want to perform on the database. They encapsulate the entire process of receiving external data, casing, and validating it before writing it to the database.

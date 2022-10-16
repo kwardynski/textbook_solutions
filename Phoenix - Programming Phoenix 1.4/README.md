@@ -30,4 +30,9 @@
 - The `Plug.Conn` structure used by phoenix hold the fields that web applications use for web requests and responses.
 - Controllers also have their own plug pipeline (like endpoints and routers). Each plug in the controller pipeline is executed in order, before an action is invoked. The controller pipeline lets us explicitly choose which actions fire for any given plug!
 - **Controllers are not meant to handle business logic - all they do is translate whatever the business logic returns into something meaningful for the user.**
+
+[**Chapter 6 - Generators and Relationships**](Chapter%2006/)
+- Phoenix includes to Mix tasks (code generators) to bootstrap web interfaces:
+    - `phx.gen.html` creates a simple HHTP scaffold with HTML pages
+    - `phx.get.json` does the same for a RESTFUL API using JSON.
     

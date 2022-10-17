@@ -4,7 +4,7 @@ defmodule RumblWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_live_flash
+    plug :fetch_flash
     plug :put_root_layout, {RumblWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
@@ -56,4 +56,10 @@ defmodule RumblWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  scope "/manage", RumblWeb do
+    pipe_through [:browser, :authenticate_user]
+    resources "/videos", VideoController
+  end
+
 end

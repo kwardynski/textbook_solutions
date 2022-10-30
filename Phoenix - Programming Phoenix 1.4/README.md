@@ -35,4 +35,9 @@
 - Phoenix includes to Mix tasks (code generators) to bootstrap web interfaces:
     - `phx.gen.html` creates a simple HHTP scaffold with HTML pages
     - `phx.get.json` does the same for a RESTFUL API using JSON.
+- Contexts should be used to generate easy to maintain API layers.
+
+[**Chapter 7 - Ecto Queries and Constraints**](Chapter%2007/)
+PG126 -> Associating Videos and Categoryies
+
     

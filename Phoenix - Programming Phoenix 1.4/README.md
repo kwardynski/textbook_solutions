@@ -55,3 +55,18 @@ Constraints allow us to user underlying relational database features to help mai
 4. Changeset Error Messages - Human readable error messages.\
 
 Using changeset constraints is only useful if the error messages are something the user can take action on - otherwise it's best to "let it crash".
+
+## [Chapter 8 - Testing MVC](Chapter%2008)
+Important principles for tests
+- Fast: We want to make sure the test suite runs as quickly as possible and can run concurrently wherever possible.
+- Isolated: We want to have the right level of isolation in our tests. Tests that are _too_ isolated wont' have enough context to be useful. Tests that aren't isolated enough will be difficult to write, understand, and maintain.
+- DRY (Don't Repeat Yourself): We want to eliminate unnecessary repetition in our tests.
+- Repeatable: We want the same test on the same code to **always** yield the same results.
+
+Some common (framework specific) terminology:
+- Unit Tests: Exercise a function for one layer of the application. 
+- Integration Tests: Focus on the way different layers of an application fir together. For example, an appropriate unit test _here_ would begin at an endpoint, run through a set of pipelines, read from the database, and render a template through views like a Phoenix request would.
+
+Phoenix generates a module in `test/support/data_case.ex` to serve as a foundation for the tests that interact with the database. In our case, the `Accounts` and `Multimedia` contexts both work with the database. The `data_case` handles setup and teardown of teh database and integrates with `Ecto.Sandbox` to allow concurrent transactional tests.
+
+Up To: TESTING USER ACCOUNTS (pg 151)

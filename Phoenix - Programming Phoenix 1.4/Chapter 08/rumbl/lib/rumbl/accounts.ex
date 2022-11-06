@@ -45,9 +45,6 @@ defmodule Rumbl.Accounts do
   def authenticate_by_username_and_pass(username, given_pass) do
     user = get_user_by(username: username)
 
-    IO.inspect(user, label: "USER")
-    IO.inspect(given_pass, label: "GIVEN PASS")
-
     cond do
       user && Pbkdf2.verify_pass(given_pass, user.password_hash) ->
         {:ok, user}

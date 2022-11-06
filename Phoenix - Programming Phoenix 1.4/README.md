@@ -69,4 +69,7 @@ Some common (framework specific) terminology:
 
 Phoenix generates a module in `test/support/data_case.ex` to serve as a foundation for the tests that interact with the database. In our case, the `Accounts` and `Multimedia` contexts both work with the database. The `data_case` handles setup and teardown of teh database and integrates with `Ecto.Sandbox` to allow concurrent transactional tests.
 
-Up To: TESTING USER ACCOUNTS (pg 151)
+### Wrapping Up:
+- The `Ecto.Sandbox` allows us to test functions which interact with the database in a concurrent and isolated manner
+- We can add `tag`s to our tests, which means that the `tag`'s value can be accessed in the context, allowing us to customize the tests.
+- To preserve the `Plug` pipeline, we can use bypasses to skip plugs.

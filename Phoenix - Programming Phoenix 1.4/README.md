@@ -73,3 +73,6 @@ Phoenix generates a module in `test/support/data_case.ex` to serve as a foundati
 - The `Ecto.Sandbox` allows us to test functions which interact with the database in a concurrent and isolated manner
 - We can add `tag`s to our tests, which means that the `tag`'s value can be accessed in the context, allowing us to customize the tests.
 - To preserve the `Plug` pipeline, we can use bypasses to skip plugs.
+
+## [Chapter 9 - Watching Videos](Chapter%2009)
+Putting on hold for now - picking up "Functional Web Development With Elixir, OTP, and Phoenix" as that is more immediately useful to the project I will be starting shortly.

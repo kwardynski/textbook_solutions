@@ -11,8 +11,8 @@
 - We did this in a way that's completely decoupled from any other modules written so far and kept is separate from the application's "business logic". 
 
 ---
+
 ## Part II - Add OTP for Concurrency and Fault Tolerance
 
-
 ### [Chapter 4 - Wrap It Up in a GenServer](Chapter%2004/)
-
+- The Erlang `:sys` module provides a `get_state/1` function which returns the state of a `:gen_server` process - **THIS IS NOT INTENDED FOR PRODUCTION CODE, USE FOR EXPLORING/DEBUGGING**

@@ -5,4 +5,6 @@
 - the `@enforce_keys` attribute can be used to ensure that all listed keys are present when creating a new struct.
 
 ## [Chapter 3 - Manage State with a State Machine](Chapter%2003/)
+- In this chapter, we build a state machine from scratch in `IslandsEngine.Rules` using multiple function heads to handle transitions from current to next allowable state. 
+- We did this in a way that's completely decoupled from any other modules written so far and kept is separate from the application's "business logic". 
 

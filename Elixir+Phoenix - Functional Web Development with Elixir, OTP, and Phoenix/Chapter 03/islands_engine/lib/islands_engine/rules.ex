@@ -1,5 +1,4 @@
 defmodule IslandsEngine.Rules do
-  alias IslandsEngine.Rules
   alias __MODULE__
 
   defstruct [
@@ -52,7 +51,19 @@ defmodule IslandsEngine.Rules do
     end
   end
 
+  # Allow player 2 to guess a coordinate
+  # The allowable transitions are either to :player1_turn or :game_over
+  def check(%Rules{state: :player2_turn} = rules, {:guess_coordinate, :player2}) do
+    {:ok, %Rules{rules | state: :player1_turn}}
+  end
 
+  # Check whether player1 has won the game
+  def check(%Rules{state: :player2_turn} = rules, {:win_check, win_or_not}) do
+    case win_or_not do
+      :no_win -> {:ok, rules}
+      :win -> {:ok, %Rules{rules | state: :game_over}}
+    end
+  end
 
   # Catch-all check clause which will ALWAYS MATCH
   def check(_state, _action), do: :error

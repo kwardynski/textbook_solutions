@@ -17,7 +17,7 @@
 ### [Chapter 4 - Wrap It Up in a GenServer](Chapter%2004/)
 - The Erlang `:sys` module provides a `get_state/1` function which returns the state of a `:gen_server` process - **THIS IS NOT INTENDED FOR PRODUCTION CODE, USE FOR EXPLORING/DEBUGGING**
 
-### [Chapter 5 - Process Supervision for Recovery](Chapter/%2005/)
+### [Chapter 5 - Process Supervision for Recovery](Chapter%2005/)
 - Elixir and OTP provide process supervision - meaning we can have specialized processes to watch other processes and restart them if/when they crash.
 - In Elixir, we have the supervisor "Behaviour" which extracts error handling code from the business logic into it's own modules. These modules spawn supervisors which link to other processes and watch for failures, then re-start linked processes if they crash.
 - Supervisor Behaviour is based on the principles that:

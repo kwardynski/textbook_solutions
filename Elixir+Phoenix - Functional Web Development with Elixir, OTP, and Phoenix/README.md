@@ -30,3 +30,13 @@
     - One for All: If a single process terminates, the supervisor will restart **all** of it's children. This strategy is best if the group of supervised processes depend on each other, and each other's state, to work properly.
     - Rest for One: If a single process terminates, the supervisor will restart the processes that start _after_ the failed process, in the order they initially were started in. This strategy is best to use for groups of processes that have a temporal dependence, meaning that newly spawned processes depend on the processes, and the state of those processes, started before them.
     -Simple One for One: Similar to One for One, except if an _individual_ process terminates, the supervisor will restart just that one process. 
+- ETS tables (Erlang Term Storage) are a storage engine that ships with OTP. These allow us to store data in-memory as two-element tuples (key, value).
+    - We can initialize one of four ETS table types:
+        - :set -> tables that store exactly one value per key.
+        - :ordered_set -> tables that store exactly one value per key _in order_.
+        - :bag -> tables that can store multiple values under the same key, as long as the values are not exact duplicates.
+        - :duplicate_bag -> tables that can store multiple values under the same key, even if they are exact duplicates.
+    - ETS tables come with three levels of privacy:
+        - :private -> only the process which initialized the table can read or write from it.
+        - :protected (default) -> all process can read from the table, however only the process that started it can write to the table.
+        - :public -> all processes have read and write access to the table, regardless of which process started it.

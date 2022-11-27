@@ -1,5 +1,5 @@
 defmodule IslandsEngine.Game do
-  use GenServer
+  use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
 
   alias IslandsEngine.Board
   alias IslandsEngine.Coordinate
@@ -8,6 +8,7 @@ defmodule IslandsEngine.Game do
   alias IslandsEngine.Rules
 
   @players [:player1, :player2]
+  @timeout  60 * 60 * 24 * 1000
 
   # This single-line function is actually quite significant - it will allow other processes
   # to programatically start a new game process
@@ -19,10 +20,21 @@ defmodule IslandsEngine.Game do
   # initializations, then return a tagged tuple of {:ok, initial_state}
   # GenServer provides the name argument, we use it to help build the state we require
   def init(name) do
-    player1 = %{name: name, board: Board.new(), guesses: Guesses.new()}
-    player2 = %{name: nil, board: Board.new(), guesses: Guesses.new()}
-    {:ok, %{player1: player1, player2: player2, rules: %Rules{}}}
+    send(self(), {:set_state, name})
+    {:ok, fresh_state(name)}
   end
+
+  def handle_info({:set_state, name}, _state_data) do
+    # Check whether a state exists for this game, if not start with a fresh state
+    state_data =
+      case :ets.lookup(:game_state, name) do
+        [] -> fresh_state(name)
+        [{_key, state}] -> state
+      end
+    :ets.insert(:game_state, {name, state_data})
+    {:noreply, state_data, @timeout}
+  end
+
 
   # Adding a second player
   # We will use GenServer.call/2 to keep this SYNCHRONOUS
@@ -52,7 +64,8 @@ defmodule IslandsEngine.Game do
   end
 
   defp reply_success(state_data, reply) do
-    {:reply, reply, state_data}
+    :ets.insert(:game_state, {state_data.player1.name, state_data})
+    {:reply, reply, state_data, @timeout}
   end
 
   # Handle positioning islands
@@ -156,4 +169,22 @@ defmodule IslandsEngine.Game do
     {:via, Registry, {Registry.Game, name}}
   end
 
+  # Handles a "timeout" instance and stops the game process
+  def handle_info(:timeout, state_data) do
+    {:stop, {:shutdown, :timeout}, state_data}
+  end
+
+  # Returns the NEW state of a game given a player's name
+  defp fresh_state(name) do
+    player1 = %{name: name, board: Board.new(), guesses: Guesses.new()}
+    player2 = %{name: nil, board: Board.new(), guesses: Guesses.new()}
+    %{player1: player1, player2: player2, rules: %Rules{}}
+  end
+
+
+  def terminate({:shutdown, :timeout}, state_data) do
+    :ets.delete(:game_state, state_data.player1.name)
+    :ok
+  end
+  def terminate(_reason, _state), do: :ok
 end

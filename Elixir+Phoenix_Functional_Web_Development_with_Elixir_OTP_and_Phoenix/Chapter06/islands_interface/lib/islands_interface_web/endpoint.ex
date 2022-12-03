@@ -7,7 +7,7 @@ defmodule IslandsInterfaceWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_islands_interface_key",
-    signing_salt: "Nida1ncx"
+    signing_salt: "y1Xyw+UG"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

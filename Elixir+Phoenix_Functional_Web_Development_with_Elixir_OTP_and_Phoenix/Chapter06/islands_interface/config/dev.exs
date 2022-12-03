@@ -13,7 +13,7 @@ config :islands_interface, IslandsInterfaceWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "uJqRB+CCVXNtsE3LAXJp3rNKrGeTzRQ5oUxB4erTX6VIvEN40EZ2P8t77DPcs570",
+  secret_key_base: "V2cP9R6wCFDcKvDAHoAiFarn2RPiNNG32wFm2YRugzBYYrKUWtAMeoQEWHfKW2Rm",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

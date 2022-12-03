@@ -12,7 +12,7 @@ config :islands_interface, IslandsInterfaceWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: IslandsInterfaceWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: IslandsInterface.PubSub,
-  live_view: [signing_salt: "xXDCs2uZ"]
+  live_view: [signing_salt: "CnD0ROD2"]
 
 # Configures the mailer
 #

@@ -4,7 +4,7 @@ import Config
 # you can enable the server option below.
 config :islands_interface, IslandsInterfaceWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "a5izVbPMofpyCnKcMBFEtFvKdew0lLfkpPo510RafRnYpN0HE3uQ7gxUYeeFUhZe",
+  secret_key_base: "CL52giv2HWO0iqTqbiceyGsArm9VQw/uYwjgOtBdDSHOKcKJZqQ+4EDuxbF/2f5k",
   server: false
 
 # In test we don't send emails.

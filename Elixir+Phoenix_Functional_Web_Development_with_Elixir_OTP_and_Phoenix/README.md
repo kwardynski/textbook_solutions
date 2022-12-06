@@ -1,21 +1,24 @@
 # Functional Web Development with Elixir, OTP, and Phoenix
 
+I'll be ending the book halfway through Chapter 7.\
+The Phoenix channel/socket sections are well out of date by this point, and we're not actually building the front end (which is what I was hoping to get out of the book in the first place.)
+
 ## Part I - Define the Functional Core in Elixir
 
-### [Chapter 2 - Model Data and Behavior](Chapter%2002/)
+### [Chapter 2 - Model Data and Behavior](Chapter02/)
 - Structs maintain all the qualities of maps, however they offer compile-time checks on the keys, and allow us to do run-time checks on the struct's type.
 - the `@enforce_keys` attribute can be used to ensure that all listed keys are present when creating a new struct.
 
-### [Chapter 3 - Manage State with a State Machine](Chapter%2003/)
+### [Chapter 3 - Manage State with a State Machine](Chapter03/)
 - In this chapter, we build a state machine from scratch in `IslandsEngine.Rules` using multiple function heads to handle transitions from current to next allowable state. 
 - We did this in a way that's completely decoupled from any other modules written so far and kept is separate from the application's "business logic". 
 
 ## Part II - Add OTP for Concurrency and Fault Tolerance
 
-### [Chapter 4 - Wrap It Up in a GenServer](Chapter%2004/)
+### [Chapter 4 - Wrap It Up in a GenServer](Chapter04/)
 - The Erlang `:sys` module provides a `get_state/1` function which returns the state of a `:gen_server` process - **THIS IS NOT INTENDED FOR PRODUCTION CODE, USE FOR EXPLORING/DEBUGGING**
 
-### [Chapter 5 - Process Supervision for Recovery](Chapter%2005/)
+### [Chapter 5 - Process Supervision for Recovery](Chapter05/)
 - Elixir and OTP provide process supervision - meaning we can have specialized processes to watch other processes and restart them if/when they crash.
 - In Elixir, we have the supervisor "Behaviour" which extracts error handling code from the business logic into it's own modules. These modules spawn supervisors which link to other processes and watch for failures, then re-start linked processes if they crash.
 - Supervisor Behaviour is based on the principles that:
@@ -41,7 +44,20 @@
 
 ## Part III - Add a Web Interface with Phoenix
 
-### [Chapter 6 - Generate a New web Interface with Phoenix](Chapter%2006/)
+### [Chapter 6 - Generate a New web Interface with Phoenix](Chapter06/)
 - Coupling: It is best practice to separate business logic from frameworks/interfaces. 
 - Phoenix is NOT your Application: We are not building a Phoenix app, we are building a game which uses Phoenix as the web framework! It is important to think in these terms to help mentally (and programatically) separate the business domain from the web domain.
 - Decoupling: We are going to _layer on_ our web interface, such that it will live _alongside_ our game engine - ensuring the two are sufficiently decoupled such that we can re-use our business logic with other frameworks/interfaces.
+
+### [Chapter 7 - Create Persistent Connections with Phoenix Channels](Chapter07/)
+- Channels provide (safe and scalable) persistent connections between stateful servers and stateful clients.
+- Channels can support bidirectional messaging on many topics.
+- The components of a Channel:
+    - Socket: `Phoenix.Socket` - A custom behavior for establishing and maintaining the connection between clients and channels.
+    - Transport: Transport layer moves messages between the client and server.
+    - Phoenix PubSub: A method by which clients register to a channel in order to receive published messages.
+    - Presence: Tracks channel membership (including across multiple nodes in a distributed cluster)
+    - Clients
+
+
+    

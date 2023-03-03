@@ -74,3 +74,4 @@ Mutation is the last step before the next generation - with the goal of preventi
 - Re-solved the One-Max problem with this framework
 
 ## [Chapter 3 - Encoding Problems and Solutions](Chapter03/)
+- Chromosome - At the most basic level, a chromosome is a single solution to a genetic problem. It is a series of genes consisting of values called _alleles_.

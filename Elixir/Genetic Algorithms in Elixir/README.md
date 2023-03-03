@@ -2,6 +2,7 @@
 
 - [Chapter 1 - Writing Your First Genetic Algorithm](#chapter-1---writing-your-first-genetic-algorithm)
 - [Chapter 2 - Breaking Down Genetic Algorithms](#chapter-2---breaking-down-genetic-algorithms)
+- [Chapter 3 - Encoding Problems and Solutions](#chapter-3---encoding-problems-and-solutions)
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -71,3 +72,5 @@ Mutation is the last step before the next generation - with the goal of preventi
     - Defined criteria that's consistent and different between problems
     - Defined rules for the framework to enforce so it can be generalized
 - Re-solved the One-Max problem with this framework
+
+## [Chapter 3 - Encoding Problems and Solutions](Chapter03/)

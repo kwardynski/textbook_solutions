@@ -20,3 +20,5 @@ erl_crash.dump
 **/code_samples/**
 
 *.DS_Store
+
+*.tool-versions

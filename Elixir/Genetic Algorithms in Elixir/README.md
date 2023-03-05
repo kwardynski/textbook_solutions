@@ -74,4 +74,25 @@ Mutation is the last step before the next generation - with the goal of preventi
 - Re-solved the One-Max problem with this framework
 
 ## [Chapter 3 - Encoding Problems and Solutions](Chapter03/)
-- Chromosome - At the most basic level, a chromosome is a single solution to a genetic problem. It is a series of genes consisting of values called _alleles_.
+Chromosome - At the most basic level, a chromosome is a single solution to a genetic problem. It is a series of genes consisting of values called _alleles_.
+
+### Using Behaviours to Model Problems
+Elixir doesn't feature abstract classses, interfaces, or traits like traditional object-oriented languages. Instead, abstraciton can be implemented using _behaviours_. We will define 3 callbacks to help with our framework:
+- Genotype: `@callback genotype :: Chromosome.t`
+    - Chromosome.t is the custom type build in the previous section.
+    - This means `genotype/0` must return a `%Chromosome{}` struct.
+- Fitness: `@callback fitness_function(Chromosome.t) :: number()`
+    - Fitness functions assess the fitness of a single chromosome.
+    - In this book, fitness functions will only return numeric values. 
+- Termination: `@callback terminate?(Enum.t) :: boolean()`
+    - Even though the termination criteria is not always known, this behaviour should take an enumerable representation of the population and return a boolean indicating whether evolution should stop or continue
+
+### Understanding and Choosing Genotypes
+One of the most important decisions when using a genetic algorithm is the type of _encoding_ (the representation of a solution) used. The type of encoding scheme you use is called a _genotype_, and the genotype of a chromosome indicates what the chromosome should look like.
+
+While genotype is the internal representation of solutions, the _phenotype_ is the expressed representation of the solution - what it looks like "in the real world".
+
+- Binary Genotypes (bitstrings): genes consisting of only 1s and 0s. 
+- Permutation Genotypes: especially effective for scheduling or path-finding problems. The problems which Permutation Genotypes best lend themselves to are generally referred to as _combinatorial optimization_ problems - problems which look for an ordered solution. 
+- Real Value Genotypes: these represent solutions using real values - string, float, character, etc.
+- Tree/Graph Genotypes: the most common application for these genotypes is _genetic programming_. 

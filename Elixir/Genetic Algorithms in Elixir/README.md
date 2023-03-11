@@ -3,6 +3,7 @@
 - [Chapter 1 - Writing Your First Genetic Algorithm](#chapter-1---writing-your-first-genetic-algorithm)
 - [Chapter 2 - Breaking Down Genetic Algorithms](#chapter-2---breaking-down-genetic-algorithms)
 - [Chapter 3 - Encoding Problems and Solutions](#chapter-3---encoding-problems-and-solutions)
+- [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -77,7 +78,7 @@ Mutation is the last step before the next generation - with the goal of preventi
 Chromosome - At the most basic level, a chromosome is a single solution to a genetic problem. It is a series of genes consisting of values called _alleles_.
 
 ### Using Behaviours to Model Problems
-Elixir doesn't feature abstract classses, interfaces, or traits like traditional object-oriented languages. Instead, abstraciton can be implemented using _behaviours_. We will define 3 callbacks to help with our framework:
+Elixir doesn't feature abstract classes, interfaces, or traits like traditional object-oriented languages. Instead, abstraction can be implemented using _behaviours_. We will define 3 callbacks to help with our framework:
 - Genotype: `@callback genotype :: Chromosome.t`
     - Chromosome.t is the custom type build in the previous section.
     - This means `genotype/0` must return a `%Chromosome{}` struct.
@@ -96,3 +97,19 @@ While genotype is the internal representation of solutions, the _phenotype_ is t
 - Permutation Genotypes: especially effective for scheduling or path-finding problems. The problems which Permutation Genotypes best lend themselves to are generally referred to as _combinatorial optimization_ problems - problems which look for an ordered solution. 
 - Real Value Genotypes: these represent solutions using real values - string, float, character, etc.
 - Tree/Graph Genotypes: the most common application for these genotypes is _genetic programming_. 
+
+## [Chapter 4 - Evaluating Solutions and Populations](Chapter04/)
+
+### Introducing Penalty Functions
+Some solutions will not be considered valid, for example they may violate the constraints of the problem like the weight constraint in the [Cargo](Chapter04/genetic/scripts/cargo.exs) example. A Penalty Function is a function applied to constraint satisfaction problems for the purpose of reducing the constraint satisfaction problem into an unconstrained one. Rather than putting constraints on possible solutions, penalty functions incur a penalty on solutions which violate the constraint of the original problem.
+
+### Defining Termination Criteria
+If you don't know when to stop and return a solution, you'll never get a solution and the recursion will continue indefinitely. The goal of termination criteria is to stop the algorithm when it has reached the maximum fitness. There are three basic techniques for defining reasonable termination criteria:
+1. Stopping Evolution at a Fitness Threshold
+2. Stopping Evolution after n Generations 
+3. Stopping Evolution with No Improvements 
+    - The simplest way to stop based on changes in fitness is to use _temperature_. A "hot" algorithm continues to make improvements while a "cold" one has not made improvements in awhile.
+
+### Exploring Different Types of Optimization
+1. Optimizing Multiple Objectives
+2. Interactive Optimization - to handle as assess _perceptual data_, you can write interactive fitness functions. This is handy when you're working with solutions which are impossible to assess mathematically, instead you ask the user to assess fitness. This however usually takes a lot of time and is subject to user bias.

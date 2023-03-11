@@ -4,6 +4,7 @@
 - [Chapter 2 - Breaking Down Genetic Algorithms](#chapter-2---breaking-down-genetic-algorithms)
 - [Chapter 3 - Encoding Problems and Solutions](#chapter-3---encoding-problems-and-solutions)
 - [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
+- [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -113,3 +114,18 @@ If you don't know when to stop and return a solution, you'll never get a solutio
 ### Exploring Different Types of Optimization
 1. Optimizing Multiple Objectives
 2. Interactive Optimization - to handle as assess _perceptual data_, you can write interactive fitness functions. This is handy when you're working with solutions which are impossible to assess mathematically, instead you ask the user to assess fitness. This however usually takes a lot of time and is subject to user bias.
+
+## [Chapter 5 - Selecting the Best](Chapter05/)
+Selection is about balancing genetic diversity and fitness. If you can't maintain genetic diversity of your population, the algorithm will likely end up converging without finding the best solution. 
+1. Fitness-based Selection
+2. Rewards-based Selection - based on the cumulative reward obtained by an individual. Rewards are calculated with a reward function, and can be very useful in multi-objective optimization.
+
+### Implementing Common Selection Strategies 
+1. Elitism Selection: choose the best `n` chromosomes to reproduce.
+2. Random Selection: select `n` chromosomes at random. Can be useful if your problem absolutely requires genetic diversity.
+3. Tournament  Selection: pits chromosomes together to favour those that are both diverse and strong. One drawback of tournament selection is that it might not be appropriate for smaller populations. You can implement tournament selection with or without duplicates - if you allow duplicate parents to be selected you run the risk of allowing your population to becomes less genetically diverse. If you do not allow duplicates, you increase genetic diversity at the cost of algorithm speed 
+    - Choose a pool of `n` chromosomes where `n` is the "tournament size".
+    - Choose the fittest chromosome from the tournament.
+    - Repeat
+4. Roulette Selection (fitness-proportionate selection): choose parents with a probability proportional to their fitness. Roulette selection attempts to balance genetic diversity and fitness based on probability - individuals with higher fitness have a higher probability of being chosen, but it is still possible that less fit individuals are selected as well.
+

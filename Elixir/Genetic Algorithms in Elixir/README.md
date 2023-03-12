@@ -5,6 +5,7 @@
 - [Chapter 3 - Encoding Problems and Solutions](#chapter-3---encoding-problems-and-solutions)
 - [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
 - [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
+- [Chapter 6 - Generating New Solutions](#chapter-6---generating-new-solutions)
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -129,3 +130,14 @@ Selection is about balancing genetic diversity and fitness. If you can't maintai
     - Repeat
 4. Roulette Selection (fitness-proportionate selection): choose parents with a probability proportional to their fitness. Roulette selection attempts to balance genetic diversity and fitness based on probability - individuals with higher fitness have a higher probability of being chosen, but it is still possible that less fit individuals are selected as well.
 
+## [Chapter 6 - Generating New Solutions](Chapter06/)
+
+### Implementing Common Crossover Strategies 
+1. Order-One Crossover
+    - Select a random slice of genes from Parent 1
+    - Remove the values from teh slice of Parent 1 from Parent 2
+    - Insert the slice from Parent 1 into the same position in Parent 2
+    - Repeat with a random slice from Parent 2
+2. Single-point Crossover
+3. Uniform Crossover
+4. Whole Arithmetic Recombination

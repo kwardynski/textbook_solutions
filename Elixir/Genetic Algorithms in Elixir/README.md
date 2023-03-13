@@ -141,3 +141,6 @@ Selection is about balancing genetic diversity and fitness. If you can't maintai
 2. Single-point Crossover
 3. Uniform Crossover
 4. Whole Arithmetic Recombination
+
+### Chromosome Repairment 
+This is the process by which you ensure solutions remain valid _after_ crossover or mutation. This is only necessary if you choose a crossover strategy which does not impact the validity of your solutions.

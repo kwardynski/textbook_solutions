@@ -6,6 +6,12 @@
 - [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
 - [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
 - [Chapter 6 - Generating New Solutions](#chapter-6---generating-new-solutions)
+- [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)
+
+
+## General Notes:
+- A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download.
+- `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries.
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -144,3 +150,6 @@ Selection is about balancing genetic diversity and fitness. If you can't maintai
 
 ### Chromosome Repairment 
 This is the process by which you ensure solutions remain valid _after_ crossover or mutation. This is only necessary if you choose a crossover strategy which does not impact the validity of your solutions.
+
+## [Chapter 7 - Preventing Premature Convergence](Chapter07/)
+Premature convergence refers to the stalling progress of an algorithm as a result of a lack of genetic diversity in the population.

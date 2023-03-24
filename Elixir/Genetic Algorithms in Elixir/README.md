@@ -156,4 +156,10 @@ Premature convergence refers to the stalling progress of an algorithm as a resul
 
 ### Implementing Common Mutation Strategies
 1. Flip Mutation (bit flip mutation) - this will "flip" some or all of the bits in a chromosome.
-2. Scramble Mutation
+2. Scramble Mutation - "shuffles" all the genes in a given chromosome to give a new one.
+3. Gaussian Mutation - this method is meant specifically for real-value representations of chromosomes. In Gaussian Mutation, you calculate the mean and standard deviation of the genes in the chromosome, and then use them to generate numbers in the distribution. This allows you to slightly adjust a chromosome without changing it too much as the random numbers that replace the genes in the chromosome belong to the same distribution.
+4. Swap - swap a pair of genes.
+5. Uniform - replace genes with uniform random numbers.
+6. Invert - invert the order of the chromosome.
+
+

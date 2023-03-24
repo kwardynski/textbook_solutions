@@ -66,11 +66,14 @@ defmodule Genetic do
   end
 
   def mutation(population, opts \\ []) do
+    mutate_fn = Keyword.get(opts, :mutation_type, &Toolbox.Mutation.flip/1)
+    rate = Keyword.get(opts, :mutation_rate, 0.05)
+
     population
     |> Enum.map(
         fn chromosome ->
-          if :rand.uniform() < 0.05 do
-            %Chromosome{chromosome | genes: Enum.shuffle(chromosome.genes)}
+          if :rand.uniform() < rate do
+            apply(mutate_fn, [chromosome])
           else
             chromosome
           end
@@ -94,7 +97,7 @@ defmodule Genetic do
       {parents, leftover} = select(population, opts)
       children = crossover(parents, opts)
       children ++ leftover
-      # |> mutation(opts)
+      |> mutation(opts)
       |> evolve(problem, generation+1, opts)
     end
   end

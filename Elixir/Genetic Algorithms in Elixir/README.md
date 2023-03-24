@@ -6,7 +6,7 @@
 - [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
 - [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
 - [Chapter 6 - Generating New Solutions](#chapter-6---generating-new-solutions)
-- [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)
+- [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)cd 
 
 
 ## General Notes:
@@ -153,3 +153,7 @@ This is the process by which you ensure solutions remain valid _after_ crossover
 
 ## [Chapter 7 - Preventing Premature Convergence](Chapter07/)
 Premature convergence refers to the stalling progress of an algorithm as a result of a lack of genetic diversity in the population.
+
+### Implementing Common Mutation Strategies
+1. Flip Mutation (bit flip mutation) - this will "flip" some or all of the bits in a chromosome.
+2. Scramble Mutation

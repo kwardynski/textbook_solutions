@@ -7,11 +7,13 @@
 - [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
 - [Chapter 6 - Generating New Solutions](#chapter-6---generating-new-solutions)
 - [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)cd 
+- [Chapter 8 - Replacing and Transitioning](#chapter-8---replacing-and-transitioning)
 
 
 ## General Notes:
 - A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download.
 - `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries.
+- This codebase is riddled with errors - the `Genetic.run` call in `schedule.exs` for Chapter 8 calls `reinserton_strategy` - changing this to `reinsertion_strategy` (correctly spelling reinsertion) results in an argument error - looks like the `old` list contains a mix of `%Types.Chromosome{}`s and tuples of `%Types.Chromosome{}` -> the private `unzip/2` function was added to fix this...
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -162,4 +164,18 @@ Premature convergence refers to the stalling progress of an algorithm as a resul
 5. Uniform - replace genes with uniform random numbers.
 6. Invert - invert the order of the chromosome.
 
+## [Chapter 8 - Replacing and Transitioning](Chapter08/)
+The process of combining the byproducts of selection, crossover, and mutation, into a new population is called _reinsertion_ or _replacement_.
 
+### Reinsertion
+The process of taking chromosomes produced from selection, crossover, and mutation, and inserting them back into a population to move on to the next generation.
+1. Pure Reinsertion and Generational Replacement - _Pure Reinsertion_ is the tpe we used in the first few chapters of this book, where every chromosome in the old population is replaced with an offspring of the new population.
+2. Elitist Reinsertion - a top-portion of the old population survives into the next generation. You introduce a concept of _survival rate_, which dictates what percentage of the parent chromosomes survive into the next generation.
+3. Uniform Reinsertion or Random Replacement - selects random chromosomes from the old population to survive into the next generation. The purpose of this strategy is to maintain as much genetic diversity as possible in the new population. This strategy, however, is not very common.
+
+If you need your algorithms to converge quickly and efficiently, stick to elitist or pure insertion. 
+
+### Growing and Shrinking Populations
+There is a slight distinction between _replacement_ and _reinsertion_, although the two terms are often used interchangeably. _Replacement_ strategies focus specifically on maintaining a fixed population size - old chromosomes are replaced with new ones. _Reinsertion_ strategies integrate old chromosomes with new ones.
+
+Unchecked selection and survival rates will make your population either grow or decay _exponentially_, so they must be balanced or else your algorithm will stall or run out of populations.

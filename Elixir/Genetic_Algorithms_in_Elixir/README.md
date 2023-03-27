@@ -9,7 +9,7 @@
 - [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)cd 
 - [Chapter 8 - Replacing and Transitioning](#chapter-8---replacing-and-transitioning)
 - [Chapter 9 - Tracking Genetic Algorithms](#chapter-9---tracking-genetic-algorithms)
-
+- [Chapter 10 - Visualizing the Results](#chapter-10---visualizing-the-results)
 
 ## General Notes:
 - A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download.
@@ -188,3 +188,8 @@ During an evolution, you may want to track statistics about age, fitness, or var
 
 ### Tracking Genealogy in a Genealogy Tree
 In the context of genetic algorithms, _genealogy_ is the history of a chromosome's lineage. It allows the tracking of the ancestry of a specific chromosome back to the initial population. We'll use `libgraph` to construct a _genealogy tree_, represented as a directed graph pointing from parent chromosome to child.
+
+## [Chapter 10 - Visualizing the Results](Chapter10/)
+- Software like [Graphviz](http://www.webgraphviz.com/) can be used to visualize genealogy graphs.
+- Elixir has a Gnuplot package which can be used to plot results.
+- There is an ALE (Arcade Learning Environment) library for Elixir. It's very easy to put a wrapper around `ALEx` callbacks and integrate a sequence of commands into a game interface to try and find the optimal way to get the highest score!

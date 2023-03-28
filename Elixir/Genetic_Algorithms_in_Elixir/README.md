@@ -10,11 +10,14 @@
 - [Chapter 8 - Replacing and Transitioning](#chapter-8---replacing-and-transitioning)
 - [Chapter 9 - Tracking Genetic Algorithms](#chapter-9---tracking-genetic-algorithms)
 - [Chapter 10 - Visualizing the Results](#chapter-10---visualizing-the-results)
+- [Chapter 11 - Optimizing Your Algorithms](#chapter-11---optimizing-your-algorithms)
 
 ## General Notes:
-- A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download.
-- `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries.
+- A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download
+- `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries
 - This codebase is riddled with errors - the `Genetic.run` call in `schedule.exs` for Chapter 8 calls `reinsertion_strategy` - changing this to `reinsertion_strategy` (correctly spelling reinsertion) results in an argument error - looks like the `old` list contains a mix of `%Types.Chromosome{}`s and tuples of `%Types.Chromosome{}` -> the private `unzip/2` function was added to fix this (easier to fix here than find the root of the problem unfortunately...)
+- I took out the display in `Genetic.evolve` in Chapter 11, having the printout is distracting during the benchmarking process, and `:erlang.float_to_binary(best.fitness)` doesn't play nice with integers
+- I don't seem to be able to benchmark `Genetic.crossover` out of the box, might need to go back and tweak some `Benchee` settings
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -193,3 +196,25 @@ In the context of genetic algorithms, _genealogy_ is the history of a chromosome
 - Software like [Graphviz](http://www.webgraphviz.com/) can be used to visualize genealogy graphs.
 - Elixir has a Gnuplot package which can be used to plot results.
 - There is an ALE (Arcade Learning Environment) library for Elixir. It's very easy to put a wrapper around `ALEx` callbacks and integrate a sequence of commands into a game interface to try and find the optimal way to get the highest score!
+
+## [Chapter 11 - Optimizing Your Algorithms](Chapter11/)
+When working through algorithm optimizations, the general progression of successive optimization methods is:
+
+1. Creating benchmarks and profiling the algorithms.
+2. Optimizing the performance of the Elixir code.
+3. Parallelizing the algorithms.
+4. Writing NIFs
+
+Generally, you want to progress down this list only when necessary.
+
+### Tools
+- `Benchee` can be used for benchmarking
+- `ExProf` can be used for profiling
+
+### Quick and Easy Optimizations
+- If order of lists is not important, `Enum.map/2` can be replaced with `Enum.reduce/3`
+- Using negative numbers in `Enum.take` and `Enum.drop` is mad slow
+- Lazy Evaluation - `Stream` can be used in place of `Enum` in some places to reduce memory usage
+
+### Parallelization  
+

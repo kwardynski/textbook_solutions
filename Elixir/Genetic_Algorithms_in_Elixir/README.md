@@ -13,11 +13,12 @@
 - [Chapter 11 - Optimizing Your Algorithms](#chapter-11---optimizing-your-algorithms)
 
 ## General Notes:
-- A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download
-- `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries
-- This codebase is riddled with errors - the `Genetic.run` call in `schedule.exs` for Chapter 8 calls `reinsertion_strategy` - changing this to `reinsertion_strategy` (correctly spelling reinsertion) results in an argument error - looks like the `old` list contains a mix of `%Types.Chromosome{}`s and tuples of `%Types.Chromosome{}` -> the private `unzip/2` function was added to fix this (easier to fix here than find the root of the problem unfortunately...)
-- I took out the display in `Genetic.evolve` in Chapter 11, having the printout is distracting during the benchmarking process, and `:erlang.float_to_binary(best.fitness)` doesn't play nice with integers
-- I don't seem to be able to benchmark `Genetic.crossover` out of the box, might need to go back and tweak some `Benchee` settings
+- A lot of times the code in the book is "wrong" -> missing capture operators which are present in code available to download.
+- `codebreaker.exs` as written in Chapter 7 will not run, not exactly in the mood to debug why it returns invalid character binaries.
+- This codebase is riddled with errors - the `Genetic.run` call in `schedule.exs` for Chapter 8 calls `reinsertion_strategy` - changing this to `reinsertion_strategy` (correctly spelling reinsertion) results in an argument error - looks like the `old` list contains a mix of `%Types.Chromosome{}`s and tuples of `%Types.Chromosome{}` -> the private `unzip/2` function was added to fix this (easier to fix here than find the root of the problem unfortunately...).
+- I took out the display in `Genetic.evolve` in Chapter 11, having the printout is distracting during the benchmarking process, and `:erlang.float_to_binary(best.fitness)` doesn't play nice with integers.
+- I don't seem to be able to benchmark `Genetic.crossover` out of the box, might need to go back and tweak some `Benchee` settings.
+- Chapter 11 is an absolute nightmare in terms of bugs - I don't think this was tested at all. For example `genetic.initialize` returns a list of tuples for the population, whereas `evaluate` expects population to be a list of pids. Furthermore the pipeline in `evaluate` is not going to work as written because the results of the first `Enum.map` are incompatible with sort... I _really_ don't feel like debugging even more of this code for the sake of seeing it run, I get it...
 
 ## [Chapter 1 - Writing Your First Genetic Algorithm](Chapter01/)
 Genetic Algorithms are a class of optimization algorithms based on evolution and natural selection. They use strategies inspired by genetics and biology to produce near-optimal solutions to complicated problems. Genetic Algorithms word via _transformations_ on _populations_ of _chromosomes_ over some number of _generations_. 
@@ -217,4 +218,7 @@ Generally, you want to progress down this list only when necessary.
 - Lazy Evaluation - `Stream` can be used in place of `Enum` in some places to reduce memory usage
 
 ### Parallelization  
+- Reach for parallelization when dealing with larger amounts of data that take awhile to process
+- Easiest way to parallelize is with the `Task` module
+- Keep in mind that creating a new process comes with significant overhead (stack, heap, message area, etc.) 
 

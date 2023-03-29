@@ -11,19 +11,16 @@ defmodule Genetic do
 
   def initialize(genotype, opts \\ []) do
     population_size = Keyword.get(opts, :population_size, 100)
-    population = for _ <- 1..population_size, do: genotype.()
-    Utilities.Genealogy.add_chromosomes(population)
-    population
+    for _ <- 1..population_size do
+      {:ok, pid} = Chromosome.start_link(genes: genotype.())
+      pid
+    end
   end
 
   def evaluate(population, fitness_function, _opts \\ []) do
     population
-    |> Enum.map(fn chromosome ->
-      fitness = fitness_function.(chromosome)
-      age = chromosome.age + 1
-      %Chromosome{chromosome | fitness: fitness, age: age}
-    end)
-    |> Enum.sort_by(fitness_function, &>=/2)
+    |> Enum.map(&Task.async(fn -> Chromosome.eval(&1, fitness_function) end))
+    |> Enum.sort_by(fn c -> Chromosome.get_fitness(c) end, &>=/2)
   end
 
   def select(population, opts \\ []) do
@@ -120,5 +117,12 @@ defmodule Genetic do
       end)
 
     Utilities.Statistics.insert(generation, statistics_map)
+  end
+
+  def pmap(collection, func) do
+    collection
+    |> Enum.map(fn member -> func.(member) end)
+    |> Enum.map(fn task -> Task.async(fn -> task end) end)
+    |> Enum.map(&Task.await(&1))
   end
 end

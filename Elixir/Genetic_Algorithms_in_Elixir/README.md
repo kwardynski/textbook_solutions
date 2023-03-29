@@ -6,7 +6,7 @@
 - [Chapter 4 - Evaluating Solutions and Populations](#chapter-4---evaluating-solutions-and-populations)
 - [Chapter 5 - Selecting the Best](#chapter-5---selecting-the-best)
 - [Chapter 6 - Generating New Solutions](#chapter-6---generating-new-solutions)
-- [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)cd 
+- [Chapter 7 - Preventing Premature Convergence](#chapter-7---preventing-premature-convergence)
 - [Chapter 8 - Replacing and Transitioning](#chapter-8---replacing-and-transitioning)
 - [Chapter 9 - Tracking Genetic Algorithms](#chapter-9---tracking-genetic-algorithms)
 - [Chapter 10 - Visualizing the Results](#chapter-10---visualizing-the-results)
